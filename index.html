@@ -3,23 +3,80 @@
 
 <head>
   <meta charset="utf-8">
-  <title>CS208 - Starter Code (UPDATE ME)!</title>
+  <title>To-Do List</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <h1>HTML Rocks!!</h1>
-  <ul>
-  <li><a href="/hello">Click here to say hello</a></li>
-  <li><button id="hello-link">Click Me!</button></li>
-  <li><button id="joke-button">Dad Joke!</button></li>
-  <script src="script.js"></script>
-  </ul>
-  <img src="funny.png" alt="Funny Image" width="300" height="200">
-
-  <h2 id="joke-display"></h2>
+ 
+  <h1>To-Do List</h1>
+  <div id="input-area">
+    <label for="task-input">New task:</label>
+    <input type="text" id="task-input" />
+    <button id="add-btn">Add</button>
+  </div>
+  <ol id="task-list">
+    <li><span class="task-text">Clean bathroom</span><button class="done-btn">&#10006;</button></li>
+    <li><span class="task-text">Study for big exam</span><button class="done-btn">&#10006;</button></li>
+    <li><span class="task-text">Feed fish</span><button class="done-btn">&#10006;</button></li>
+  </ol>
+ 
+  <script>
+    // remove clicked task from list
+    function removeTask(event) {
+      const li = event.target.parentNode;
+      const ol = li.parentNode;
+      ol.removeChild(li);
+    }
+ 
+    // create/append new task
+    function addTask(newTask) {
+      const li = document.createElement("li");
+      li.innerHTML = `<span class="task-text">${newTask}</span><button class="done-btn">&#10006;</button>`;
+      const ol = document.querySelector("ol");
+      ol.appendChild(li);
+ 
+      // register removeTask
+      const doneBtns = document.querySelectorAll(".done-btn");
+      doneBtns[doneBtns.length - 1].addEventListener("click", removeTask);
+    }
+ 
+    // validates input
+    function addBtnClick() {
+      const input = document.getElementById("task-input");
+      const taskText = input.value.trim();
+ 
+      // prevent empty task
+      if (taskText === "") return;
+ 
+      addTask(taskText);
+ 
+      // clears
+      input.value = "";
+      input.focus();
+    }
+ 
+    // for add button
+    function domLoaded() {
+      document.getElementById("add-btn").addEventListener("click", addBtnClick);
+ 
+      // keyup handler for Enter key
+      document.getElementById("task-input").addEventListener("keyup", function(event) {
+        if (event.key === "Enter") {
+          addBtnClick();
+        }
+      });
+ 
+      // register removeTask on the pre-existing done buttons
+      document.querySelectorAll(".done-btn").forEach(function(btn) {
+        btn.addEventListener("click", removeTask);
+      });
+    }
+ 
+    document.addEventListener("DOMContentLoaded", domLoaded);
+  </script>
+ 
 </body>
-
 </html>

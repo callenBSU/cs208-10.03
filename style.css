@@ -1,0 +1,65 @@
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      background-color: #fff;
+      color: #000;
+    }
+ 
+    h1 {
+      font-size: 2em;
+      margin-bottom: 16px;
+    }
+ 
+    #input-area {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+ 
+    #input-area label {
+      font-size: 1em;
+    }
+ 
+    #task-input {
+      font-size: 1em;
+      padding: 2px 4px;
+      border: 1px solid #999;
+      width: 200px;
+    }
+ 
+    #add-btn {
+      font-size: 1em;
+      padding: 2px 10px;
+      cursor: pointer;
+    }
+ 
+    ol {
+      padding-left: 28px;
+      margin: 0;
+    }
+ 
+    ol li {
+      font-size: 1em;
+      margin: 6px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+ 
+    .task-text {
+      flex: 1;
+    }
+ 
+    .done-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9em;
+      color: #555;
+      padding: 0 2px;
+    }
+ 
+    .done-btn:hover {
+      color: #000;
+    }
